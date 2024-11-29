@@ -1,14 +1,17 @@
 :root {
-  --primary: #1a1a1a;
+  --primary: #111111;
   --secondary: #2d5ff3;
   --accent: #00c6a7;
-  --text: #333333;
+  --text: #111111;
+  --text-secondary: #444444;
   --background: #ffffff;
   --card-bg: #ffffff;
-  --footer-bg: #1a1a1a;
+  --footer-bg: #111111;
   --gradient-start: #2d5ff3;
   --gradient-end: #00c6a7;
-  --section-spacing: 120px;
+  --section-spacing: 80px;
+  --border-radius: 16px;
+  --transition: all 0.3s ease;
 }
 
 * {
@@ -44,4 +47,34 @@ body {
   background-clip: text;
   color: transparent;
   display: inline-block;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  font-weight: 700;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  border-radius: 2px;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }

@@ -1,18 +1,150 @@
+/* Mobile First Approach */
 @media (max-width: 768px) {
-  .container {
-    padding: 1.5rem;
+  .hero {
+    padding: 40px 1rem;
   }
-  
-  h1 {
-    font-size: 2.5rem;
+
+  .hero-image {
+    margin-top: 1rem;
+  }
+
+  .nav-menu {
+    padding: 0.5rem;
+  }
+
+  .nav-menu ul {
+    gap: 0.5rem;
+  }
+
+  .nav-menu a {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .content-section {
+    padding: 1.25rem;
   }
 
   .tools-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
+    padding: 0 1rem;
   }
 
-  .footer-content {
+  .tool-card {
+    max-width: 100%;
+  }
+
+  .tool-card img {
+    height: 180px;
+  }
+
+  .advantages-grid {
     grid-template-columns: 1fr;
-    padding: 0 1.5rem;
+    gap: 1.25rem;
+  }
+
+  .image-feature {
+    height: 200px;
+  }
+
+  .feature-list li {
+    font-size: 0.85rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .hero {
+    padding: 60px 1.5rem;
+  }
+
+  .tool-card img {
+    height: 220px;
+  }
+
+  .image-feature {
+    height: 300px;
+  }
+}
+
+/* Large Screens */
+@media (min-width: 1025px) {
+  .tools-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .container {
+    padding: 0 2rem;
+  }
+
+  .tool-card:hover {
+    transform: translateY(-8px);
+  }
+}
+
+/* Print Styles */
+@media print {
+  .nav-menu,
+  .footer {
+    display: none;
+  }
+
+  .page {
+    padding: 0;
+  }
+
+  .content-section {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  .video-container {
+    display: none;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --card-bg: #1a1a1a;
+    --text: #ffffff;
+    --background: #121212;
+  }
+
+  .nav-menu {
+    background: rgba(26, 26, 26, 0.9);
+  }
+
+  .tool-card,
+  .content-section {
+    background: #1a1a1a;
+  }
+
+  .feature-list li {
+    color: #999;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  :root {
+    --secondary: #0000ff;
+    --accent: #008000;
+  }
+
+  .gradient-text {
+    background: none;
+    color: var(--secondary);
   }
 }
