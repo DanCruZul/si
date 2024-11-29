@@ -1,8 +1,8 @@
-// Initialize AOS animations
 export function initializeAnimations() {
   AOS.init({
-    duration: 1000,
+    duration: 600,
     once: true,
-    offset: 100
+    offset: 50,
+    disable: window.innerWidth < 768
   });
 }
