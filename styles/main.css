@@ -4,7 +4,7 @@
   --accent: #00c6a7;
   --text: #111111;
   --text-secondary: #2b2b2b;
-  --background: #ffffff;
+  --background: #f8f9fa;
   --card-bg: #ffffff;
   --footer-bg: #111111;
   --gradient-start: #2d5ff3;
@@ -12,12 +12,18 @@
   --section-spacing: 80px;
   --border-radius: 16px;
   --transition: all 0.3s ease;
+  --page-max-width: 1200px;
+  --content-spacing: 2rem;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -28,17 +34,25 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .container {
-  max-width: 1400px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   padding: 0;
   flex: 1;
+  width: 100%;
 }
 
 .section-padding {
-  padding: var(--section-spacing) 2rem;
+  padding: var(--section-spacing) var(--content-spacing);
 }
 
 .gradient-text {
@@ -50,7 +64,7 @@ body {
 }
 
 .section-title {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 4vw, 2.5rem);
   color: var(--text);
   margin-bottom: 2rem;
   text-align: center;
@@ -70,11 +84,74 @@ body {
   border-radius: 2px;
 }
 
-.card-title {
-  font-size: 1.1rem;
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
   color: var(--text);
-  margin-bottom: 0.5rem;
+  text-decoration: none;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: var(--transition);
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  color: var(--secondary);
+}
+
+.back-btn i {
+  font-size: 1.1rem;
+  transition: transform 0.2s ease;
+}
+
+.back-btn:hover i {
+  transform: translateX(-3px);
+}
+
+.page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 var(--content-spacing);
+}
+
+.page-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.page-header p {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: var(--text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.page-content {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-spacing);
+}
+
+.footer {
+  background: var(--footer-bg);
+  color: white;
+  padding: 1.5rem;
+  text-align: center;
+  margin-top: auto;
+  width: 100%;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
 }
