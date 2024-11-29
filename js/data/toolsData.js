@@ -1,7 +1,7 @@
 export const toolsData = [
   {
     title: 'Blogs Educativos',
-    image: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643',
+    image: 'https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e',
     icon: 'fas fa-blog',
     pageId: 'blogs',
     features: [
@@ -12,7 +12,7 @@ export const toolsData = [
   },
   {
     title: 'Podcasts',
-    image: 'https://images.unsplash.com/photo-1589903308904-1010c2294adc',
+    image: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618',
     icon: 'fas fa-podcast',
     pageId: 'podcasts',
     features: [
@@ -23,7 +23,7 @@ export const toolsData = [
   },
   {
     title: 'RSS',
-    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97',
+    image: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d',
     icon: 'fas fa-rss',
     pageId: 'rss',
     features: [
@@ -34,7 +34,7 @@ export const toolsData = [
   },
   {
     title: 'YouTube',
-    image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0',
+    image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728',
     icon: 'fab fa-youtube',
     pageId: 'youtube',
     features: [
@@ -45,7 +45,7 @@ export const toolsData = [
   },
   {
     title: 'OneDrive',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3',
     icon: 'fas fa-cloud',
     pageId: 'onedrive',
     features: [

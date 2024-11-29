@@ -1,3 +1,7 @@
+import { renderBlogPlatforms } from '../components/blogs/BlogPlatforms.js';
+import { renderBlogComparison } from '../components/blogs/BlogComparison.js';
+import { renderBlogExamples } from '../components/blogs/BlogExamples.js';
+
 export const blogsPageContent = `
   <div id="blogs" class="page">
     <div class="page-content">
@@ -19,36 +23,35 @@ export const blogsPageContent = `
         </div>
       </div>
 
-      <div class="two-column-grid" data-aos="fade-up" data-aos-delay="100">
-        <div class="content-section">
-          <h3><i class="fas fa-plus-circle"></i> Ventajas</h3>
-          <ul class="feature-list">
-            <li><i class="fas fa-check"></i> Desarrollo de habilidades de escritura</li>
-            <li><i class="fas fa-check"></i> Fomento del pensamiento crítico</li>
-            <li><i class="fas fa-check"></i> Creación de portafolio digital</li>
-            <li><i class="fas fa-check"></i> Interacción con otros estudiantes</li>
-          </ul>
-        </div>
-        
-        <div class="content-section">
-          <h3><i class="fas fa-minus-circle"></i> Desventajas</h3>
-          <ul class="feature-list">
-            <li><i class="fas fa-exclamation"></i> Requiere actualización constante</li>
-            <li><i class="fas fa-exclamation"></i> Gestión del tiempo</li>
-            <li><i class="fas fa-exclamation"></i> Verificación de fuentes</li>
-          </ul>
-        </div>
-      </div>
+      ${renderBlogPlatforms()}
+      ${renderBlogComparison()}
+      ${renderBlogExamples()}
 
       <div class="content-section" data-aos="fade-up" data-aos-delay="200">
-        <h3>Impacto en el Rol Estudiantil</h3>
-        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846" alt="Student Impact" class="image-feature" loading="lazy">
-        <ul class="feature-list">
-          <li><i class="fas fa-star"></i> Documentar el proceso de aprendizaje</li>
-          <li><i class="fas fa-star"></i> Desarrollar habilidades de comunicación escrita</li>
-          <li><i class="fas fa-star"></i> Crear una presencia académica digital</li>
-          <li><i class="fas fa-star"></i> Participar en comunidades de aprendizaje</li>
-        </ul>
+        <h3>Impacto en el Aprendizaje</h3>
+        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644" alt="Student Impact" class="image-feature" loading="lazy">
+        <div class="impact-grid">
+          <div class="impact-item">
+            <i class="fas fa-pencil-alt"></i>
+            <h4>Expresión Escrita</h4>
+            <p>Desarrollo de habilidades de comunicación escrita y estilo personal.</p>
+          </div>
+          <div class="impact-item">
+            <i class="fas fa-brain"></i>
+            <h4>Pensamiento Crítico</h4>
+            <p>Fomento del análisis, reflexión y argumentación.</p>
+          </div>
+          <div class="impact-item">
+            <i class="fas fa-users"></i>
+            <h4>Colaboración</h4>
+            <p>Creación de comunidades de aprendizaje y retroalimentación entre pares.</p>
+          </div>
+          <div class="impact-item">
+            <i class="fas fa-graduation-cap"></i>
+            <h4>Portfolio Digital</h4>
+            <p>Documentación del proceso de aprendizaje y logros académicos.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

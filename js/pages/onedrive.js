@@ -63,7 +63,7 @@ export const onedrivePageContent = `
       </div>
 
       <div class="content-section" data-aos="fade-up" data-aos-delay="200">
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa" alt="Cloud Storage" class="image-feature" loading="lazy">
+        <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173" alt="Collaborative Learning" class="image-feature" loading="lazy">
       </div>
     </div>
   </div>

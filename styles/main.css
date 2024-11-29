@@ -1,5 +1,7 @@
 @import './components/card.css';
 @import './components/tools.css';
+@import './components/blogs.css';
+@import './components/podcasts.css';
 
 :root {
   --primary: #111111;
@@ -83,7 +85,6 @@ img {
   display: inline-block;
 }
 
-/* Content Section Styles */
 .content-section {
   background: var(--card-bg);
   padding: clamp(1.25rem, 3vw, 2rem);
@@ -106,7 +107,6 @@ img {
   line-height: 1.7;
 }
 
-/* Image and Video Elements */
 .image-feature {
   width: 100%;
   height: 300px;
