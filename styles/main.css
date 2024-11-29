@@ -1,0 +1,47 @@
+:root {
+  --primary: #1a1a1a;
+  --secondary: #2d5ff3;
+  --accent: #00c6a7;
+  --text: #333333;
+  --background: #ffffff;
+  --card-bg: #ffffff;
+  --footer-bg: #1a1a1a;
+  --gradient-start: #2d5ff3;
+  --gradient-end: #00c6a7;
+  --section-spacing: 120px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: var(--text);
+  background-color: var(--background);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+  flex: 1;
+}
+
+.section-padding {
+  padding: var(--section-spacing) 2rem;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
