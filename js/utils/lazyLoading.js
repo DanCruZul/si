@@ -1,47 +1,45 @@
-// Lazy loading utility for images
+/**
+ * Sets up lazy loading for images using Intersection Observer
+ * @returns {Function} Cleanup function to disconnect the observer
+ */
 export function setupLazyLoading() {
-  if ('loading' in HTMLImageElement.prototype) {
-    // Use native lazy loading if available
-    document.querySelectorAll('[data-src]').forEach(img => {
-      img.src = img.dataset.src;
-      img.removeAttribute('data-src');
-    });
-  } else {
-    // Fallback to Intersection Observer
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          img.removeAttribute('data-src');
-          observer.unobserve(img);
+  const imageObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const img = entry.target;
+        if (img.dataset.src) {
+          loadImage(img, observer);
         }
-      });
-    }, {
-      rootMargin: '50px 0px',
-      threshold: 0.1
+      }
     });
-
-    document.querySelectorAll('[data-src]').forEach(img => {
-      imageObserver.observe(img);
-    });
-  }
-
-  // Preload images for better performance
-  window.addEventListener('load', () => {
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    if (images.length > 0) {
-      requestIdleCallback(() => {
-        images.forEach(img => {
-          if (img.dataset.src) {
-            const preloadLink = document.createElement('link');
-            preloadLink.rel = 'preload';
-            preloadLink.as = 'image';
-            preloadLink.href = img.dataset.src;
-            document.head.appendChild(preloadLink);
-          }
-        });
-      });
-    }
+  }, {
+    rootMargin: '50px 0px',
+    threshold: 0.1
   });
+
+  // Observe all lazy images
+  document.querySelectorAll('.lazy-image').forEach(img => {
+    imageObserver.observe(img);
+  });
+
+  // Cleanup on page change
+  return () => imageObserver.disconnect();
+}
+
+/**
+ * Loads an image with a preloader
+ * @param {HTMLImageElement} img - The image element to load
+ * @param {IntersectionObserver} observer - The observer to unobserve the image
+ */
+function loadImage(img, observer) {
+  const tempImage = new Image();
+  
+  tempImage.onload = () => {
+    img.src = img.dataset.src;
+    img.classList.add('loaded');
+  };
+  
+  tempImage.src = img.dataset.src;
+  img.removeAttribute('data-src');
+  observer.unobserve(img);
 }

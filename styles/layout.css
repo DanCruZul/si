@@ -83,7 +83,6 @@
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  width: 100%;
 }
 
 /* Footer */
@@ -92,12 +91,19 @@
   color: white;
   padding: 1.5rem;
   text-align: center;
-  width: 100%;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
   position: relative;
   left: 0;
   right: 0;
-  bottom: 0;
   margin-top: auto;
+}
+
+.footer p {
+  max-width: var(--page-max-width);
+  margin: 0 auto;
+  padding: 0 var(--content-spacing);
 }
 
 /* Section Layouts */

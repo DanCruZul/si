@@ -1,15 +1,15 @@
 export const blogsPageContent = `
   <div id="blogs" class="page">
-    <a href="#" onclick="showPage('home')" class="back-btn">
-      <i class="fas fa-arrow-left"></i> Volver al inicio
-    </a>
-    
-    <div class="page-header">
-      <h1>Blogs <span class="gradient-text">Educativos</span></h1>
-      <p>Espacios digitales para el desarrollo del pensamiento crítico y la expresión escrita</p>
-    </div>
-
     <div class="page-content">
+      <a href="#" onclick="showPage('home')" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Volver al inicio
+      </a>
+      
+      <div class="page-header">
+        <h1>Blogs <span class="gradient-text">Educativos</span></h1>
+        <p>Espacios digitales para el desarrollo del pensamiento crítico y la expresión escrita</p>
+      </div>
+
       <div class="content-section" data-aos="fade-up">
         <h2>¿Qué son los Blogs Educativos?</h2>
         <p>Los blogs educativos son espacios web que permiten la creación y publicación de contenido académico de forma cronológica. Son herramientas fundamentales para el desarrollo del pensamiento crítico y la expresión escrita.</p>
