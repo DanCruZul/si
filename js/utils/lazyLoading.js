@@ -18,7 +18,7 @@ export function setupLazyLoading() {
   });
 
   // Observe all lazy images
-  document.querySelectorAll('.lazy-image').forEach(img => {
+  document.querySelectorAll('img[data-src]').forEach(img => {
     imageObserver.observe(img);
   });
 
@@ -37,9 +37,9 @@ function loadImage(img, observer) {
   tempImage.onload = () => {
     img.src = img.dataset.src;
     img.classList.add('loaded');
+    img.removeAttribute('data-src');
   };
   
   tempImage.src = img.dataset.src;
-  img.removeAttribute('data-src');
   observer.unobserve(img);
 }
