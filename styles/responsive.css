@@ -119,6 +119,7 @@
   :root {
     --card-bg: #1a1a1a;
     --text: #ffffff;
+    --text-secondary: #e0e0e0;
     --background: #121212;
   }
 
@@ -132,7 +133,7 @@
   }
 
   .feature-list li {
-    color: #999;
+    color: #e0e0e0;
   }
 }
 
@@ -141,6 +142,7 @@
   :root {
     --secondary: #0000ff;
     --accent: #008000;
+    --text-secondary: #000000;
   }
 
   .gradient-text {
