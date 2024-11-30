@@ -1,10 +1,10 @@
-@import './components/card.css';
-@import './components/tools.css';
-@import './components/blogs.css';
-@import './components/podcasts.css';
-@import './components/rss.css';
-@import './components/youtube.css';
-@import './components/onedrive.css';
+@import "./components/card.css";
+@import "./components/tools.css";
+@import "./components/blogs.css";
+@import "./components/podcasts.css";
+@import "./components/rss.css";
+@import "./components/youtube.css";
+@import "./components/onedrive.css";
 
 :root {
   --primary: #111111;
@@ -30,37 +30,45 @@
   box-sizing: border-box;
 }
 
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for IE and Edge */
+* {
+  -ms-overflow-style: none;
+}
+
 html {
   scroll-behavior: auto;
-  height: 100%; /* Set fixed height */
-  overflow: hidden; /* Disable scrolling */
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   line-height: 1.6;
   color: var(--text);
   background-color: var(--background);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow: hidden; /* Disable scrolling */
-  position: fixed; /* Prevent body scrolling */
-  width: 100%;
-  height: 100%;
+  overflow-x: hidden;
 }
 
+/* Rest of your existing styles remain unchanged */
 .container {
   max-width: var(--page-max-width);
   margin: 0 auto;
   padding: 0;
   flex: 1;
   width: 100%;
-  height: 100%; /* Full height */
-  overflow: hidden; /* Disable scrolling */
 }
 
-/* Rest of your existing styles remain unchanged */
 .section-title {
   font-size: clamp(2rem, 4vw, 2.5rem);
   color: var(--text);
@@ -71,19 +79,27 @@ body {
 }
 
 .section-title::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -10px;
   left: 50%;
   transform: translateX(-50%);
   width: 100px;
   height: 4px;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
   border-radius: 2px;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  background: linear-gradient(
+    135deg,
+    var(--gradient-start),
+    var(--gradient-end)
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -95,7 +111,7 @@ body {
   padding: clamp(1.25rem, 3vw, 2rem);
   border-radius: var(--border-radius);
   margin-bottom: 2rem;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .content-section h2 {
@@ -118,7 +134,7 @@ body {
   object-fit: cover;
   border-radius: var(--border-radius);
   margin: 1.5rem 0;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .video-container {
@@ -128,7 +144,7 @@ body {
   overflow: hidden;
   border-radius: var(--border-radius);
   margin: 1.5rem 0;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .video-container iframe {
