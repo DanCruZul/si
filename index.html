@@ -1,272 +1,522 @@
-ns: repeat(2, 1fr);
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Herramientas Educativas Colaborativas</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <style>
+      /* Root Variables  https://statuesque-croquembouche-7ee3b3.netlify.app/ */
+      :root {
+        --primary: #111111;
+        --secondary: #2d5ff3;
+        --accent: #00c6a7;
+        --text: #111111;
+        --text-secondary: #444444;
+        --background: #ffffff;
+        --card-bg: #ffffff;
+        --footer-bg: #111111;
+        --gradient-start: #2d5ff3;
+        --gradient-end: #00c6a7;
+        --section-spacing: 80px;
+        --border-radius: 16px;
+        --transition: all 0.3s ease;
+        --page-max-width: 1200px;
+        --content-spacing: 2rem;
       }
-    }
 
-    @media (max-width: 768px) {
-      .hero {
-        padding: 40px 1rem;
+      /* Base Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
       }
 
-      .tools-grid,
-      .synthesis-grid {
-        padding: 0 1rem;
-        gap: 1.5rem;
+      ::-webkit-scrollbar {
+        display: none;
       }
 
-      .map-container {
-        padding: 1rem;
+      html {
+        scroll-behavior: auto;
+        height: 100%;
+        overflow: hidden;
       }
 
-      .main-node {
+      body {
+        font-family: "Poppins", sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background-color: var(--background);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
         width: 100%;
-        max-width: 280px;
-        margin-bottom: 3rem;
+        height: 100%;
       }
 
-      .map-connections {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+      /* Container and Layout */
+      .container {
+        max-width: var(--page-max-width);
+        margin: 0 auto;
+        padding: 0;
+        flex: 1;
+        width: 100%;
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
       }
 
-      .map-node {
-        max-width: 280px;
+      /* Navigation */
+      .nav-menu {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        padding: 0.75rem;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-menu ul {
+        display: flex;
+        justify-content: center;
+        gap: clamp(0.75rem, 2vw, 1.5rem);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        flex-wrap: wrap;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: var(--transition);
+        padding: 0.5rem 0.75rem;
+        border-radius: var(--border-radius);
+        font-size: 0.9rem;
+      }
+
+      .nav-menu a:hover {
+        color: var(--secondary);
+        background: rgba(45, 95, 243, 0.05);
+      }
+
+      /* Page Styles */
+      .page {
+        display: none;
+        animation: fadeIn 0.3s ease;
+        padding-top: 2rem;
+        max-width: var(--page-max-width);
+        margin: 0 auto;
+        min-height: calc(100vh - 60px);
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s ease;
+      }
+
+      .page.active {
+        display: block;
+      }
+
+      .page:not(#home) {
+        overflow-y: auto;
+        height: 100vh;
+      }
+
+      #home {
+        overflow: hidden;
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 60px 2rem;
+        text-align: center;
+        margin-bottom: var(--section-spacing);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+        color: var(--text);
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+
+      .hero p {
+        font-size: clamp(1rem, 2vw, 1.25rem);
+        color: var(--text-secondary);
+        max-width: 800px;
+        margin: 0 auto 2rem;
+        font-weight: 400;
+      }
+
+      .hero-image {
+        width: 100%;
+        max-width: 900px;
+        height: auto;
+        border-radius: var(--border-radius);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        margin: 2rem auto 0;
+        display: block;
+      }
+
+      /* Tools Grid */
+      .tools-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(1rem, 2vw, 2rem);
+        padding: 0 clamp(1rem, 2vw, 1.5rem);
+        margin-bottom: var(--section-spacing);
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Tool Cards */
+      .tool-card {
+        background: var(--card-bg);
+        border-radius: var(--border-radius);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        text-decoration: none;
+        color: var(--text);
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto;
+        will-change: transform;
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+      }
+
+      .tool-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .tool-card-image-container {
+        position: relative;
+        padding-top: 56.25%;
+        overflow: hidden;
+        background: #f5f5f5;
+        border-radius: var(--border-radius) var(--border-radius) 0 0;
+      }
+
+      .tool-card img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        will-change: transform;
+        transition: opacity 0.3s ease-out, transform 0.2s ease-out;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+      }
+
+      .tool-card:hover img {
+        transform: scale(1.05);
+      }
+
+      .tool-card-content {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* Feature Lists */
+      .feature-list {
+        list-style: none;
+        margin: 0.75rem 0 0;
+        padding: 0;
+      }
+
+      .feature-list li {
+        padding: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+      }
+
+      .feature-list i {
+        color: var(--secondary);
+        font-size: 1rem;
+      }
+
+      /* Synthesis Section */
+      .synthesis {
+        padding: 4rem 0;
+        background: var(--background);
+      }
+
+      .synthesis-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        padding: 0 2rem;
+        max-width: 1200px;
         margin: 0 auto;
       }
 
-      .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
+      .synthesis-card {
+        background: var(--card-bg);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
       }
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <div id="home" class="page active">
-      <section class="hero">
-        <h1>Herramientas Educativas <span class="gradient-text">Colaborativas</span></h1>
-        <p>Descubre un nuevo mundo de posibilidades para el aprendizaje digital y la colaboración educativa</p>
-        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7" alt="Collaborative Education" class="hero-image">
-      </section>
 
-      <div class="tools-grid">
-        <div class="tool-card">
-          <div class="tool-card-image-container">
-            <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e" alt="Blogs Educativos">
-          </div>
-          <div class="tool-card-content">
-            <div class="tool-icon"><i class="fas fa-blog"></i></div>
-            <h3>Blogs Educativos</h3>
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i>Desarrollo de escritura</li>
-              <li><i class="fas fa-check"></i>Pensamiento crítico</li>
-              <li><i class="fas fa-check"></i>Portafolio digital</li>
-            </ul>
-          </div>
+      /* Utility Classes */
+      .gradient-text {
+        background: linear-gradient(
+          135deg,
+          var(--gradient-start),
+          var(--gradient-end)
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        color: var(--text);
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        font-weight: 700;
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Media Queries */
+      @media (max-width: 768px) {
+        .hero {
+          padding: 40px 1rem;
+        }
+
+        .tools-grid,
+        .synthesis-grid {
+          grid-template-columns: 1fr;
+          gap: 1.25rem;
+          padding: 0 1rem;
+        }
+
+        .tool-card {
+          max-width: 100%;
+        }
+
+        .section-title {
+          font-size: 2rem;
+          margin-bottom: 2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="#" onclick="showPage('home')">Inicio</a></li>
+        <li><a href="#" onclick="showPage('blogs')">Blogs</a></li>
+        <li><a href="#" onclick="showPage('podcasts')">Podcasts</a></li>
+        <li><a href="#" onclick="showPage('rss')">RSS</a></li>
+        <li><a href="#" onclick="showPage('youtube')">YouTube</a></li>
+        <li><a href="#" onclick="showPage('onedrive')">OneDrive</a></li>
+      </ul>
+    </nav>
+
+    <div class="container">
+      <div id="home" class="page active">
+        <section class="hero">
+          <h1>
+            Herramientas Educativas
+            <span class="gradient-text">Colaborativas</span>
+          </h1>
+          <p>
+            Descubre un nuevo mundo de posibilidades para el aprendizaje digital
+            y la colaboración educativa
+          </p>
+          <img
+            src="https://images.unsplash.com/photo-1509062522246-3755977927d7"
+            alt="Collaborative Education"
+            class="hero-image"
+          />
+        </section>
+
+        <div class="tools-grid">
+          <!-- Tool cards will be dynamically populated -->
         </div>
 
-        <div class="tool-card">
-          <div class="tool-card-image-container">
-            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618" alt="Podcasts">
+        <section class="synthesis">
+          <h2 class="section-title">Síntesis de Herramientas</h2>
+          <div class="synthesis-grid">
+            <div class="synthesis-card">
+              <h3>
+                <i class="fas fa-graduation-cap"></i> Aprendizaje Colaborativo
+              </h3>
+              <p>
+                Las herramientas presentadas facilitan la colaboración entre
+                estudiantes y docentes.
+              </p>
+            </div>
+            <div class="synthesis-card">
+              <h3><i class="fas fa-brain"></i> Desarrollo de Habilidades</h3>
+              <p>
+                Cada herramienta contribuye al desarrollo de diferentes
+                habilidades.
+              </p>
+            </div>
+            <div class="synthesis-card">
+              <h3><i class="fas fa-rocket"></i> Innovación Educativa</h3>
+              <p>
+                La integración representa un enfoque innovador hacia la
+                educación moderna.
+              </p>
+            </div>
           </div>
-          <div class="tool-card-content">
-            <div class="tool-icon"><i class="fas fa-podcast"></i></div>
-            <h3>Podcasts</h3>
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i>Aprendizaje flexible</li>
-              <li><i class="fas fa-check"></i>Escucha activa</li>
-              <li><i class="fas fa-check"></i>Contenido experto</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-image-container">
-            <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d" alt="RSS">
-          </div>
-          <div class="tool-card-content">
-            <div class="tool-icon"><i class="fas fa-rss"></i></div>
-            <h3>RSS</h3>
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i>Gestión de información</li>
-              <li><i class="fas fa-check"></i>Actualización automática</li>
-              <li><i class="fas fa-check"></i>Curación de contenido</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-image-container">
-            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728" alt="YouTube">
-          </div>
-          <div class="tool-card-content">
-            <div class="tool-icon"><i class="fab fa-youtube"></i></div>
-            <h3>YouTube</h3>
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i>Tutoriales visuales</li>
-              <li><i class="fas fa-check"></i>Contenido multilingüe</li>
-              <li><i class="fas fa-check"></i>Aprendizaje interactivo</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="tool-card">
-          <div class="tool-card-image-container">
-            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="OneDrive">
-          </div>
-          <div class="tool-card-content">
-            <div class="tool-icon"><i class="fas fa-cloud"></i></div>
-            <h3>OneDrive</h3>
-            <ul class="feature-list">
-              <li><i class="fas fa-check"></i>Almacenamiento seguro</li>
-              <li><i class="fas fa-check"></i>Colaboración en tiempo real</li>
-              <li><i class="fas fa-check"></i>Integración Office</li>
-            </ul>
-          </div>
-        </div>
+        </section>
       </div>
-
-      <section class="synthesis">
-        <h2 class="section-title">Síntesis de Herramientas</h2>
-        <div class="synthesis-grid">
-          <div class="synthesis-card">
-            <h3><i class="fas fa-graduation-cap"></i> Aprendizaje Colaborativo</h3>
-            <p>Las herramientas presentadas facilitan la colaboración entre estudiantes y docentes, permitiendo la creación y compartición de contenido educativo de manera efectiva.</p>
-          </div>
-          <div class="synthesis-card">
-            <h3><i class="fas fa-brain"></i> Desarrollo de Habilidades</h3>
-            <p>Cada herramienta contribuye al desarrollo de diferentes habilidades: escritura (Blogs), comunicación oral (Podcasts), curación de contenido (RSS), y más.</p>
-          </div>
-          <div class="synthesis-card">
-            <h3><i class="fas fa-rocket"></i> Innovación Educativa</h3>
-            <p>La integración de estas herramientas representa un enfoque innovador hacia la educación moderna, adaptándose a las necesidades del aprendizaje digital.</p>
-          </div>
-        </div>
-      </section>
-
-      <section class="conceptual-map">
-        <h2 class="section-title">Mapa Conceptual</h2>
-        <div class="map-container">
-          <div class="map-center">
-            <div class="main-node">
-              <i class="fas fa-tools"></i>
-              <span>Herramientas Educativas Colaborativas</span>
-            </div>
-            <div class="map-connections">
-              <div class="map-branch">
-                <div class="connection-line"></div>
-                <div class="map-node">
-                  <i class="fas fa-blog"></i>
-                  <span>Blogs</span>
-                  <div class="sub-nodes">
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Escritura
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Reflexión
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Portfolio
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="map-branch">
-                <div class="connection-line"></div>
-                <div class="map-node">
-                  <i class="fas fa-podcast"></i>
-                  <span>Podcasts</span>
-                  <div class="sub-nodes">
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Audio
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Movilidad
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Accesibilidad
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="map-branch">
-                <div class="connection-line"></div>
-                <div class="map-node">
-                  <i class="fas fa-rss"></i>
-                  <span>RSS</span>
-                  <div class="sub-nodes">
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Actualización
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Organización
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Filtrado
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="map-branch">
-                <div class="connection-line"></div>
-                <div class="map-node">
-                  <i class="fab fa-youtube"></i>
-                  <span>YouTube</span>
-                  <div class="sub-nodes">
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Visual
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Interactivo
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Multimedia
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="map-branch">
-                <div class="connection-line"></div>
-                <div class="map-node">
-                  <i class="fas fa-cloud"></i>
-                  <span>OneDrive</span>
-                  <div class="sub-nodes">
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Almacenamiento
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Colaboración
-                    </div>
-                    <div class="sub-node">
-                      <span class="sub-node-dot"></span>
-                      Sincronización
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
-  </div>
-</body>
+
+    <script>
+      // Initialize AOS
+      document.addEventListener("DOMContentLoaded", function () {
+        AOS.init({
+          duration: 800,
+          once: true,
+          offset: 100,
+        });
+      });
+
+      // Navigation function
+      function showPage(pageId) {
+        document.querySelectorAll(".page").forEach((page) => {
+          page.classList.remove("active");
+        });
+        document.getElementById(pageId).classList.add("active");
+        window.scrollTo(0, 0);
+      }
+
+      // Tool cards data
+      const toolsData = [
+        {
+          title: "Blogs Educativos",
+          image: "https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e",
+          icon: "fas fa-blog",
+          features: [
+            "Desarrollo de escritura",
+            "Pensamiento crítico",
+            "Portafolio digital",
+          ],
+        },
+        {
+          title: "Podcasts",
+          image: "https://images.unsplash.com/photo-1478737270239-2f02b77fc618",
+          icon: "fas fa-podcast",
+          features: [
+            "Aprendizaje flexible",
+            "Escucha activa",
+            "Contenido experto",
+          ],
+        },
+        {
+          title: "RSS",
+          image: "https://images.unsplash.com/photo-1457369804613-52c61a468e7d",
+          icon: "fas fa-rss",
+          features: [
+            "Gestión de información",
+            "Actualización automática",
+            "Curación de contenido",
+          ],
+        },
+        {
+          title: "YouTube",
+          image: "https://images.unsplash.com/photo-1485846234645-a62644f84728",
+          icon: "fab fa-youtube",
+          features: [
+            "Tutoriales visuales",
+            "Contenido multilingüe",
+            "Aprendizaje interactivo",
+          ],
+        },
+        {
+          title: "OneDrive",
+          image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3",
+          icon: "fas fa-cloud",
+          features: [
+            "Almacenamiento seguro",
+            "Colaboración en tiempo real",
+            "Integración Office",
+          ],
+        },
+      ];
+
+      // Render tool cards
+      document.addEventListener("DOMContentLoaded", function () {
+        const toolsGrid = document.querySelector(".tools-grid");
+        toolsGrid.innerHTML = toolsData
+          .map(
+            (tool, index) => `
+        <div class="tool-card" data-aos="fade-up" data-aos-delay="${
+          index * 100
+        }">
+          <div class="tool-card-image-container">
+            <img src="${tool.image}" alt="${tool.title}">
+          </div>
+          <div class="tool-card-content">
+            <div class="tool-icon"><i class="${tool.icon}"></i></div>
+            <h3>${tool.title}</h3>
+            <ul class="feature-list">
+              ${tool.features
+                .map(
+                  (feature) => `
+                <li><i class="fas fa-check"></i>${feature}</li>
+              `
+                )
+                .join("")}
+            </ul>
+          </div>
+        </div>
+      `
+          )
+          .join("");
+      });
+    </script>
+  </body>
 </html>
