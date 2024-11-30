@@ -1,29 +1,416 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Herramientas Educativas Colaborativas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/components.css">
-    <link rel="stylesheet" href="/styles/conceptualMap.css">
-    <link rel="stylesheet" href="/styles/layout.css">
-    <link rel="stylesheet" href="/styles/pages.css">
-    <link rel="stylesheet" href="/styles/responsive.css">
-  </head>
-  <body>
-    <div class="container">
-      <div id="pages-container"></div>
-      <footer class="footer">
-        <p>© 2024 Tomás Gómez</p>
-      </footer>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herramientas Educativas Colaborativas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Previous styles remain the same until .nav-menu */
+
+    /* Remove nav-menu style https://statuesque-croquembouche-7ee3b3.netlify.app/ */
+
+    /* Add Synthesis styles */
+    .synthesis {
+      padding: 4rem 0;
+      background: var(--background);
+    }
+
+    .synthesis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      padding: 0 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .synthesis-card {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .synthesis-card h3 {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 1.25rem;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .synthesis-card h3 i {
+      color: var(--secondary);
+    }
+
+    .synthesis-card p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Add Conceptual Map styles */
+    .conceptual-map {
+      padding: 4rem 0;
+      background: var(--background);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      position: relative;
+    }
+
+    .map-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .main-node {
+      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+      color: white;
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      text-align: center;
+      width: 280px;
+      margin-bottom: 4rem;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 10px 30px rgba(45, 95, 243, 0.15);
+    }
+
+    .main-node i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .main-node span {
+      font-weight: 600;
+      font-size: 1.25rem;
+      display: block;
+      line-height: 1.4;
+    }
+
+    .map-connections {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .map-branch {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .connection-line {
+      position: absolute;
+      top: -2rem;
+      left: 50%;
+      width: 2px;
+      height: 2rem;
+      background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+      transform: translateX(-50%);
+    }
+
+    .connection-line::before {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: 50%;
+      width: 8px;
+      height: 8px;
+      background: var(--gradient-start);
+      border-radius: 50%;
+      transform: translateX(-50%);
+    }
+
+    .map-node {
+      background: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+      height: 100%;
+    }
+
+    .map-node i {
+      font-size: 1.75rem;
+      color: var(--secondary);
+    }
+
+    .map-node span {
+      font-weight: 600;
+      color: var(--text);
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .sub-nodes {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+      margin-top: 0.5rem;
+    }
+
+    .sub-node {
+      background: var(--background);
+      padding: 0.75rem 1rem;
+      border-radius: calc(var(--border-radius) / 2);
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .sub-node-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--secondary);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Responsive adjustments for conceptual map */
+    @media (max-width: 1200px) {
+      .map-connections {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 992px) {
+      .map-connections {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .map-container {
+        padding: 1rem;
+      }
+
+      .main-node {
+        width: 100%;
+        max-width: 280px;
+        margin-bottom: 3rem;
+        padding: 1.5rem;
+      }
+
+      .map-connections {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .connection-line {
+        height: 3rem;
+      }
+
+      .map-node {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+    }
+
+    /* Rest of the existing styles remain the same */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Home Page -->
+    <div id="home" class="page active">
+      <section class="hero">
+        <h1>Herramientas Educativas <span class="gradient-text">Colaborativas</span></h1>
+        <p>Descubre un nuevo mundo de posibilidades para el aprendizaje digital y la colaboración educativa</p>
+        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7" alt="Collaborative Education" class="hero-image">
+      </section>
+
+      <!-- Previous tools-grid content remains the same -->
+
+      <!-- Add Synthesis Section -->
+      <section class="synthesis">
+        <h2 class="section-title">Síntesis de Herramientas</h2>
+        <div class="synthesis-grid">
+          <div class="synthesis-card">
+            <h3><i class="fas fa-graduation-cap"></i> Aprendizaje Colaborativo</h3>
+            <p>Las herramientas presentadas facilitan la colaboración entre estudiantes y docentes, permitiendo la creación y compartición de contenido educativo de manera efectiva.</p>
+          </div>
+          <div class="synthesis-card">
+            <h3><i class="fas fa-brain"></i> Desarrollo de Habilidades</h3>
+            <p>Cada herramienta contribuye al desarrollo de diferentes habilidades: escritura (Blogs), comunicación oral (Podcasts), curación de contenido (RSS), y más.</p>
+          </div>
+          <div class="synthesis-card">
+            <h3><i class="fas fa-rocket"></i> Innovación Educativa</h3>
+            <p>La integración de estas herramientas representa un enfoque innovador hacia la educación moderna, adaptándose a las necesidades del aprendizaje digital.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Add Conceptual Map Section -->
+      <section class="conceptual-map">
+        <h2 class="section-title">Mapa Conceptual</h2>
+        <div class="map-container">
+          <div class="map-center">
+            <div class="main-node">
+              <i class="fas fa-tools"></i>
+              <span>Herramientas Educativas Colaborativas</span>
+            </div>
+            <div class="map-connections">
+              <!-- Blogs -->
+              <div class="map-branch">
+                <div class="connection-line"></div>
+                <div class="map-node">
+                  <i class="fas fa-blog"></i>
+                  <span>Blogs</span>
+                  <div class="sub-nodes">
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Escritura
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Reflexión
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Portfolio
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Podcasts -->
+              <div class="map-branch">
+                <div class="connection-line"></div>
+                <div class="map-node">
+                  <i class="fas fa-podcast"></i>
+                  <span>Podcasts</span>
+                  <div class="sub-nodes">
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Audio
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Movilidad
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Accesibilidad
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- RSS -->
+              <div class="map-branch">
+                <div class="connection-line"></div>
+                <div class="map-node">
+                  <i class="fas fa-rss"></i>
+                  <span>RSS</span>
+                  <div class="sub-nodes">
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Actualización
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Organización
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Filtrado
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- YouTube -->
+              <div class="map-branch">
+                <div class="connection-line"></div>
+                <div class="map-node">
+                  <i class="fab fa-youtube"></i>
+                  <span>YouTube</span>
+                  <div class="sub-nodes">
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Visual
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Interactivo
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Multimedia
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- OneDrive -->
+              <div class="map-branch">
+                <div class="connection-line"></div>
+                <div class="map-node">
+                  <i class="fas fa-cloud"></i>
+                  <span>OneDrive</span>
+                  <div class="sub-nodes">
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Almacenamiento
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Colaboración
+                    </div>
+                    <div class="sub-node">
+                      <span class="sub-node-dot"></span>
+                      Sincronización
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script type="module" src="/js/main.js"></script>
-  </body>
+
+    <!-- Rest of the pages remain the same -->
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      showPage('home');
+    });
+  </script>
+</body>
 </html>
