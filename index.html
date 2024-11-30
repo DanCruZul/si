@@ -1,211 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Herramientas Educativas Colaborativas</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    /* Previous styles remain the same until .nav-menu */
-
-    /* Remove nav-menu style https://statuesque-croquembouche-7ee3b3.netlify.app/ */
-
-    /* Add Synthesis styles */
-    .synthesis {
-      padding: 4rem 0;
-      background: var(--background);
-    }
-
-    .synthesis-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 0 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    .synthesis-card {
-      background: var(--card-bg);
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-    }
-
-    .synthesis-card h3 {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      font-size: 1.25rem;
-      color: var(--text);
-      margin-bottom: 1rem;
-    }
-
-    .synthesis-card h3 i {
-      color: var(--secondary);
-    }
-
-    .synthesis-card p {
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    /* Add Conceptual Map styles */
-    .conceptual-map {
-      padding: 4rem 0;
-      background: var(--background);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .map-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 2rem;
-      position: relative;
-    }
-
-    .map-center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
-
-    .main-node {
-      background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-      color: white;
-      padding: 2rem;
-      border-radius: var(--border-radius);
-      text-align: center;
-      width: 280px;
-      margin-bottom: 4rem;
-      position: relative;
-      z-index: 2;
-      box-shadow: 0 10px 30px rgba(45, 95, 243, 0.15);
-    }
-
-    .main-node i {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .main-node span {
-      font-weight: 600;
-      font-size: 1.25rem;
-      display: block;
-      line-height: 1.4;
-    }
-
-    .map-connections {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 2rem;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .map-branch {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .connection-line {
-      position: absolute;
-      top: -2rem;
-      left: 50%;
-      width: 2px;
-      height: 2rem;
-      background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
-      transform: translateX(-50%);
-    }
-
-    .connection-line::before {
-      content: '';
-      position: absolute;
-      top: -4px;
-      left: 50%;
-      width: 8px;
-      height: 8px;
-      background: var(--gradient-start);
-      border-radius: 50%;
-      transform: translateX(-50%);
-    }
-
-    .map-node {
-      background: var(--card-bg);
-      padding: 1.5rem;
-      border-radius: var(--border-radius);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
-      height: 100%;
-    }
-
-    .map-node i {
-      font-size: 1.75rem;
-      color: var(--secondary);
-    }
-
-    .map-node span {
-      font-weight: 600;
-      color: var(--text);
-      text-align: center;
-      font-size: 1.1rem;
-    }
-
-    .sub-nodes {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      width: 100%;
-      margin-top: 0.5rem;
-    }
-
-    .sub-node {
-      background: var(--background);
-      padding: 0.75rem 1rem;
-      border-radius: calc(var(--border-radius) / 2);
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .sub-node-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--secondary);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-
-    /* Responsive adjustments for conceptual map */
-    @media (max-width: 1200px) {
-      .map-connections {
-        grid-template-columns: repeat(3, 1fr);
-      }
-    }
-
-    @media (max-width: 992px) {
-      .map-connections {
-        grid-template-columns: repeat(2, 1fr);
+ns: repeat(2, 1fr);
       }
     }
 
     @media (max-width: 768px) {
+      .hero {
+        padding: 40px 1rem;
+      }
+
+      .tools-grid,
+      .synthesis-grid {
+        padding: 0 1rem;
+        gap: 1.5rem;
+      }
+
       .map-container {
         padding: 1rem;
       }
@@ -214,7 +21,6 @@
         width: 100%;
         max-width: 280px;
         margin-bottom: 3rem;
-        padding: 1.5rem;
       }
 
       .map-connections {
@@ -222,22 +28,20 @@
         gap: 3rem;
       }
 
-      .connection-line {
-        height: 3rem;
-      }
-
       .map-node {
         max-width: 280px;
         margin: 0 auto;
       }
-    }
 
-    /* Rest of the existing styles remain the same */
+      .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Home Page -->
     <div id="home" class="page active">
       <section class="hero">
         <h1>Herramientas Educativas <span class="gradient-text">Colaborativas</span></h1>
@@ -245,9 +49,83 @@
         <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7" alt="Collaborative Education" class="hero-image">
       </section>
 
-      <!-- Previous tools-grid content remains the same -->
+      <div class="tools-grid">
+        <div class="tool-card">
+          <div class="tool-card-image-container">
+            <img src="https://images.unsplash.com/photo-1488190211105-8b0e65b80b4e" alt="Blogs Educativos">
+          </div>
+          <div class="tool-card-content">
+            <div class="tool-icon"><i class="fas fa-blog"></i></div>
+            <h3>Blogs Educativos</h3>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Desarrollo de escritura</li>
+              <li><i class="fas fa-check"></i>Pensamiento crítico</li>
+              <li><i class="fas fa-check"></i>Portafolio digital</li>
+            </ul>
+          </div>
+        </div>
 
-      <!-- Add Synthesis Section -->
+        <div class="tool-card">
+          <div class="tool-card-image-container">
+            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618" alt="Podcasts">
+          </div>
+          <div class="tool-card-content">
+            <div class="tool-icon"><i class="fas fa-podcast"></i></div>
+            <h3>Podcasts</h3>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Aprendizaje flexible</li>
+              <li><i class="fas fa-check"></i>Escucha activa</li>
+              <li><i class="fas fa-check"></i>Contenido experto</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-card-image-container">
+            <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d" alt="RSS">
+          </div>
+          <div class="tool-card-content">
+            <div class="tool-icon"><i class="fas fa-rss"></i></div>
+            <h3>RSS</h3>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Gestión de información</li>
+              <li><i class="fas fa-check"></i>Actualización automática</li>
+              <li><i class="fas fa-check"></i>Curación de contenido</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-card-image-container">
+            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728" alt="YouTube">
+          </div>
+          <div class="tool-card-content">
+            <div class="tool-icon"><i class="fab fa-youtube"></i></div>
+            <h3>YouTube</h3>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Tutoriales visuales</li>
+              <li><i class="fas fa-check"></i>Contenido multilingüe</li>
+              <li><i class="fas fa-check"></i>Aprendizaje interactivo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tool-card">
+          <div class="tool-card-image-container">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3" alt="OneDrive">
+          </div>
+          <div class="tool-card-content">
+            <div class="tool-icon"><i class="fas fa-cloud"></i></div>
+            <h3>OneDrive</h3>
+            <ul class="feature-list">
+              <li><i class="fas fa-check"></i>Almacenamiento seguro</li>
+              <li><i class="fas fa-check"></i>Colaboración en tiempo real</li>
+              <li><i class="fas fa-check"></i>Integración Office</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <section class="synthesis">
         <h2 class="section-title">Síntesis de Herramientas</h2>
         <div class="synthesis-grid">
@@ -266,7 +144,6 @@
         </div>
       </section>
 
-      <!-- Add Conceptual Map Section -->
       <section class="conceptual-map">
         <h2 class="section-title">Mapa Conceptual</h2>
         <div class="map-container">
@@ -276,7 +153,6 @@
               <span>Herramientas Educativas Colaborativas</span>
             </div>
             <div class="map-connections">
-              <!-- Blogs -->
               <div class="map-branch">
                 <div class="connection-line"></div>
                 <div class="map-node">
@@ -299,7 +175,6 @@
                 </div>
               </div>
 
-              <!-- Podcasts -->
               <div class="map-branch">
                 <div class="connection-line"></div>
                 <div class="map-node">
@@ -322,7 +197,6 @@
                 </div>
               </div>
 
-              <!-- RSS -->
               <div class="map-branch">
                 <div class="connection-line"></div>
                 <div class="map-node">
@@ -345,7 +219,6 @@
                 </div>
               </div>
 
-              <!-- YouTube -->
               <div class="map-branch">
                 <div class="connection-line"></div>
                 <div class="map-node">
@@ -368,7 +241,6 @@
                 </div>
               </div>
 
-              <!-- OneDrive -->
               <div class="map-branch">
                 <div class="connection-line"></div>
                 <div class="map-node">
@@ -395,22 +267,6 @@
         </div>
       </section>
     </div>
-
-    <!-- Rest of the pages remain the same -->
   </div>
-
-  <script>
-    function showPage(pageId) {
-      document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-      });
-      document.getElementById(pageId).classList.add('active');
-      window.scrollTo(0, 0);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      showPage('home');
-    });
-  </script>
 </body>
 </html>
