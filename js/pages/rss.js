@@ -19,7 +19,7 @@ export const rssPageContent = `
         <p>RSS (Really Simple Syndication) es una herramienta que permite mantenerse actualizado con múltiples fuentes de información de manera eficiente y automatizada.</p>
         
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/6HNUqDL-pI8" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/tjXpxi4do1Q" allowfullscreen></iframe>
         </div>
       </div>
 

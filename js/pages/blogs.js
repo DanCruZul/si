@@ -19,7 +19,7 @@ export const blogsPageContent = `
         <p>Los blogs educativos son espacios web que permiten la creación y publicación de contenido académico de forma cronológica. Son herramientas fundamentales para el desarrollo del pensamiento crítico y la expresión escrita.</p>
         
         <div class="video-container">
-          <iframe src="https://www.youtube.com/embed/23xDn_K1uhE" allowfullscreen></iframe>
+          <iframe src="https://www.youtube.com/embed/kjOD90gIXIw" allowfullscreen></iframe>
         </div>
       </div>
 

@@ -3,7 +3,7 @@ export function renderYouTubeEducational() {
     <div class="content-section" data-aos="fade-up">
       <h2>Impacto Educativo</h2>
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/videoseries?list=PLillGF-RfqbYeckUaD1z6nviTp31GLTH8" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/UZluJcZXMr8" allowfullscreen></iframe>
       </div>
       <div class="impact-grid">
         <div class="impact-item">

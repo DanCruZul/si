@@ -66,9 +66,16 @@
   box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
+.integration-image-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  background: #f5f5f5;
+}
+
 .integration-image {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -76,6 +83,22 @@
 
 .integration-image.loaded {
   opacity: 1;
+}
+
+.integration-content {
+  padding: 1.5rem;
+}
+
+.integration-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  color: var(--text);
+}
+
+.integration-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .steps-container {

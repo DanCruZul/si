@@ -5,7 +5,7 @@ export function renderPodcastOverview() {
       <p>Los podcasts educativos son recursos auditivos que permiten un aprendizaje flexible y adaptado a diferentes estilos de aprendizaje.</p>
       
       <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/8IPV2oSz8m4" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/bCtFIM80oJE" allowfullscreen></iframe>
       </div>
 
       <div class="learning-styles-grid">

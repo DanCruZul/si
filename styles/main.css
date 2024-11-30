@@ -6,7 +6,6 @@
 @import './components/youtube.css';
 @import './components/onedrive.css';
 
-/* Rest of the existing main.css content remains unchanged */
 :root {
   --primary: #111111;
   --secondary: #2d5ff3;
@@ -32,7 +31,9 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  height: 100%; /* Set fixed height */
+  overflow: hidden; /* Disable scrolling */
 }
 
 body {
@@ -43,13 +44,10 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  overflow: hidden; /* Disable scrolling */
+  position: fixed; /* Prevent body scrolling */
+  width: 100%;
+  height: 100%;
 }
 
 .container {
@@ -58,8 +56,11 @@ img {
   padding: 0;
   flex: 1;
   width: 100%;
+  height: 100%; /* Full height */
+  overflow: hidden; /* Disable scrolling */
 }
 
+/* Rest of your existing styles remain unchanged */
 .section-title {
   font-size: clamp(2rem, 4vw, 2.5rem);
   color: var(--text);
